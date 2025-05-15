@@ -1,1 +1,56 @@
-<p>login works!</p>
+<div class="flex justify-content-center align-items-center min-h-screen">
+    <p-card header="Login" [style]="{ width: '400px' }">
+        <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+            <div class="field">
+                <label for="email">Email</label>
+                <input 
+                    type="text" 
+                    pInputText 
+                    [(ngModel)]="login.email" 
+                    class="w-full" 
+                    name="email" 
+                    id="email" 
+                    #email="ngModel" 
+                    required
+                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                 />
+                 @if(email.invalid && (email.dirty || email.touched)) {
+                    <small class="block p-error">
+                        @if(email.hasError('required')) {
+                            <p-message severity="error" variant="simple" size="small">Email is required</p-message>
+                        }
+                        @else if(email.hasError('pattern')) {
+                            <p-message severity="error" variant="simple" size="small">Email is invalid</p-message>
+                        }
+                    </small>
+                 }
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <p-password 
+                    [(ngModel)]="login.password" 
+                    [feedback]="false" 
+                    [toggleMask]="true" 
+                    inputId="password" 
+                    name="password" 
+                    id="password" 
+                    #password="ngModel"
+                    inputStyleClass="w-full"
+                    styleClass="w-full"
+                    required
+                ></p-password>
+                @if(password.invalid && (password.dirty || password.touched)) {
+                    <small class="block p-error">
+                        <p-message severity="error" variant="simple" size="small">Password is required</p-message>
+                    </small>
+                }
+            </div>
+            <p-button 
+                label="Login"
+                styleClass="w-full"
+                [disabled]="loginForm.invalid"
+                type="submit"
+            ></p-button>
+        </form>
+    </p-card>
+</div>
