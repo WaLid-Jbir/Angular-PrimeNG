@@ -54,6 +54,25 @@ ng e2e
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
+## Running the json-server
+
+To start the json-server, run:
+
+```bash
+npx json-server --watch db.json
+```
+
+If it's not working, you need to install json-server globally, run:
+
+```bash
+npm install -g json-server
+```
+Then :
+
+```bash
+npx json-server --watch db.json
+```
+
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
